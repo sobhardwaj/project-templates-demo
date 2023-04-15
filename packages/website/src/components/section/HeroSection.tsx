@@ -4,7 +4,7 @@ import { FC } from "react"
 const HeroSection: FC<ComponentUiCard> = ({ title = "", description = "", subtitle = "" }) => {
   return (
     <Row align={"middle"} justify={"center"}>
-      <Col span={24}>
+      {/* <Col span={24}>
         <Typography.Title level={2}>{title}</Typography.Title>
       </Col>
       <Col span={24}>
@@ -17,6 +17,11 @@ const HeroSection: FC<ComponentUiCard> = ({ title = "", description = "", subtit
           </Typography.Text>
         </Typography.Paragraph>
         <Typography.Paragraph>{description}</Typography.Paragraph>
+      </Col> */}
+      <Col>
+        <Typography.Paragraph>
+          <h4>Welcome to App</h4>
+        </Typography.Paragraph>
       </Col>
     </Row>
   )
