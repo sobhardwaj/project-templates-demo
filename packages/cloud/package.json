@@ -1,0 +1,21 @@
+{
+  "name": "@project-templates/cloud",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "pulumi": "cross-env pulumi",
+    "provision": "yarn pulumi up --yes"
+  },
+  "dependencies": {
+    "@bn-digital/pulumi": "^1.0.2",
+    "@pulumi/github": "^5.6.0",
+    "@pulumi/postgresql": "^3.8.0",
+    "@pulumi/pulumi": "^3.61.0",
+    "@pulumi/vault": "^5.10.0",
+    "@pulumiverse/harbor": "^3.8.4"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3"
+  }
+}

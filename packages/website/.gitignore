@@ -1,0 +1,5 @@
+build
+.cache
+dev-dist
+vite.config.d.ts
+vite.config.js

@@ -1,0 +1,31 @@
+---
+name: Integration
+on:
+  pull_request:
+    branches:
+      - latest
+      - main
+      - master
+    paths:
+      - '.github/workflows/integration.yml'
+      - 'skaffold.yaml'
+      - 'helmfile.*'
+      - '**/*/.env.*'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'yarn.lock'
+      - 'packages/website/public/**/*'
+      - 'packages/website/src/**/*'
+      - 'packages/cms/config/**/*'
+      - 'packages/cms/database/**/*'
+      - 'packages/cms/public/**/*'
+      - 'packages/cms/src/**/*'
+
+jobs:
+  secrets:
+    uses: bn-digital/vault/.github/workflows/import-secrets.yml@latest
+    secrets: inherit
+  build:
+    needs: [ secrets ]
+    uses: bn-digital/docker/.github/workflows/build-images.yml@latest
+    secrets: inherit

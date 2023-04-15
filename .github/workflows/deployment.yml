@@ -1,0 +1,28 @@
+---
+name: Deployment
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - latest
+    paths:
+      - '.github/workflows/deployment.yml'
+      - 'skaffold.yaml'
+      - 'helmfile.*'
+      - '**/*/.env.*'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'yarn.lock'
+      - 'packages/website/public/**/*'
+      - 'packages/website/src/**/*'
+      - 'packages/cms/config/**/*'
+      - 'packages/cms/src/**/*'
+
+jobs:
+  secrets:
+    uses: bn-digital/vault/.github/workflows/import-secrets.yml@latest
+    secrets: inherit
+  deploy:
+    needs: [ secrets ]
+    uses: bn-digital/helm/.github/workflows/deploy-charts.yml@latest
+    secrets: inherit

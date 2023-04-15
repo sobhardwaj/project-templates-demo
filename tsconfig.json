@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true
+  },
+  "references": [
+    {
+      "path": "packages/cloud/tsconfig.json"
+    },
+    {
+      "path": "packages/cms/tsconfig.json"
+    },
+    {
+      "path": "packages/website/tsconfig.json"
+    }
+  ]
+}

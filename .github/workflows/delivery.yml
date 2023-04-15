@@ -1,0 +1,30 @@
+---
+name: Delivery
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  secrets:
+    uses: bn-digital/vault/.github/workflows/import-secrets.yml@latest
+    secrets: inherit
+  build:
+    needs: [ secrets ]
+    uses: bn-digital/docker/.github/workflows/build-images.yml@latest
+    secrets: inherit
+    with:
+      environment: production
+  deploy:
+    needs: [ build ]
+    uses: bn-digital/helm/.github/workflows/deploy-charts.yml@latest
+    secrets: inherit
+    with:
+      environment: production
+      version: ${{ github.ref_name }}
+      secrets: |
+        projects/data/${{ github.event.repository.name }}/production/digitalocean       domain          | DOMAIN ;
+        projects/data/${{ github.event.repository.name }}/production/digitalocean       kubernetes      | KUBERNETES_CLUSTER ;
+        projects/data/${{ github.event.repository.name }}/production/digitalocean       token           | DIGITALOCEAN_TOKEN ;
+        projects/data/${{ github.event.repository.name }}/production/database           password        | DATABASE_PASSWORD ;
+        projects/data/${{ github.event.repository.name }}/production/database           root-password   | DATABASE_ROOT_PASSWORD ;
