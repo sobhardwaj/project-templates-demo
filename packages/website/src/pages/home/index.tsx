@@ -2,6 +2,7 @@ import { Layout, Typography } from "antd"
 import { FC } from "react"
 import { useOutletContext } from "react-router-dom"
 
+import BreadCrumb from "src/components/section/breadcrumb"
 import { HeroSection } from "../../components/section"
 
 const Home: FC = () => {
@@ -12,6 +13,7 @@ const Home: FC = () => {
         <div>
           <h2>welcome to App</h2>
         </div>
+        <BreadCrumb />
       </Typography.Paragraph>
     </Layout.Content>
   )
